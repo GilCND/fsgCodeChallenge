@@ -36,7 +36,7 @@ self.tempImage = dataFromAPI.image
 
        }
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-        // Added a delay time in order to have the variables
+        // Added a delay time
         
             print ("Here should be an image address")
             print(self.tempImage)
