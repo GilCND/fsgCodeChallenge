@@ -5,4 +5,5 @@
  ### [x] Load data from API 
  ### [ ] Display data on the app
  ### [ ] Reduce the repeatable code
+ ### [x] Use GitHub
  
