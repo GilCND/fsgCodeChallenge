@@ -14,7 +14,7 @@ class EpisodesViewController: UIViewController//, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        //TODO: implement all code to load Episodes
+      
     }
 }

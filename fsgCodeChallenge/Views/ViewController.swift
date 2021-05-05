@@ -14,10 +14,5 @@ class ViewController: UITabBarController {
     var characters: [CharacterModel] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-//        apiService.getCharacters { CharacterModel in
-//            self.characters = [CharacterModel]
-//        }
-        
-        
     }
 }
