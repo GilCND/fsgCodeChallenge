@@ -14,7 +14,6 @@ class ViewController: UITabBarController {
     var characters: [CharacterModel] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
 //        apiService.getCharacters { CharacterModel in
 //            self.characters = [CharacterModel]
 //        }

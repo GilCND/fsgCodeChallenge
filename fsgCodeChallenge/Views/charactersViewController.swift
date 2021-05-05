@@ -28,7 +28,17 @@ class charactersViewController: UIViewController, UITableViewDataSource, UITable
         
 
         //load data!
-        apiService.getCharacters { (dataFromAPI) in
+        #warning("remove the obsolete code below")
+// TODO: remove the obsolete code
+//        apiService.getCharacters { (dataFromAPI) in
+//            self.characters = [dataFromAPI]
+//            self.tempImage = dataFromAPI.image
+//            self.tempName = dataFromAPI.name
+//            self.imagesArray.append(self.tempImage)
+//            self.namesArray.append(self.tempName)
+//            self.charactersTableView.reloadData()
+//       }
+        apiService.getData { (dataFromAPI: CharacterModel) in
             self.characters = [dataFromAPI]
             self.tempImage = dataFromAPI.image
             self.tempName = dataFromAPI.name
@@ -36,6 +46,7 @@ class charactersViewController: UIViewController, UITableViewDataSource, UITable
             self.namesArray.append(self.tempName)
             self.charactersTableView.reloadData()
        }
+        
        // DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
         // Added a delay time
         
