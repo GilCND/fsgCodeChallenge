@@ -10,6 +10,7 @@ import UIKit
 class charactersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var charactersTableView: UITableView!
+    
     var apiService = ApiService()
     var characters: [CharacterModel] = []
     var selectedCellIndex: Int = 0
@@ -29,13 +30,13 @@ class charactersViewController: UIViewController, UITableViewDataSource, UITable
         //load data!
         apiService.getCharacters { (dataFromAPI) in
             self.characters = [dataFromAPI]
-self.tempImage = dataFromAPI.image
+            self.tempImage = dataFromAPI.image
             self.tempName = dataFromAPI.name
             self.imagesArray.append(self.tempImage)
             self.namesArray.append(self.tempName)
-
+            self.charactersTableView.reloadData()
        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+       // DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
         // Added a delay time
         
             print ("Here should be an image address")
@@ -46,9 +47,9 @@ self.tempImage = dataFromAPI.image
             print ("Here should be a name")
             print(self.tempName)
             for element in self.namesArray {
-              print(element)
+            print(element)
 
-            }
+          //  }
 
         }
     }

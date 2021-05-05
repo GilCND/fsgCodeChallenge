@@ -10,10 +10,7 @@ import UIKit
 class EpisodesViewController: UIViewController//, UITableViewDataSource, UITableViewDelegate
 {
 
-    
-
     @IBOutlet weak var episodesTableView: UITableView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -8,6 +8,13 @@
 import Foundation
 
 //Protocol that allow us to convert data to a struct: CODABLE
+
+struct LocationResponse: Decodable {
+    let results: LocationModel
+    let status: String
+}
+
+
 struct LocationModelData: Decodable {
     
     let location: [LocationModel]

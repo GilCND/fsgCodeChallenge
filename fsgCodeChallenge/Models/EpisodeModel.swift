@@ -9,6 +9,12 @@ import Foundation
 
 
 //Protocol that allow us to convert data to a struct: CODABLE
+
+struct EpisodeResponse: Decodable {
+    let results: EpisodeModel
+    let status: String
+}
+
 struct EpisodesData: Decodable {
     
     let episodes: [EpisodeModel]

@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-struct Response: Decodable {
+struct CharacterResponse: Decodable {
     let results: CharacterModel
     let status: String
 }
