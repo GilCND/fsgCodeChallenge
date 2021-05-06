@@ -21,7 +21,7 @@ class characterDetailVC: UIViewController {
     @IBOutlet weak var lblLocation: UILabel!
     @IBOutlet weak var lblCreated: UILabel!
     //Variables
-    var selectedImage: UIImage!
+    var selectedImage: String!
     var selectedName: String!
     var selecteStatus: String!
     var selectedSpecies: String!
@@ -35,7 +35,13 @@ class characterDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imgCharacter.image = selectedImage
+        let imageUrl = URL(string: selectedImage)
+        if imageUrl == nil {
+            print("Error image path is Nil")
+        }else{
+            let imageData = try! Data(contentsOf: imageUrl!)
+            imgCharacter.image = UIImage(data: imageData)
+        }
         lblName.text = selectedName
         lblStatus.text = selecteStatus
         lblSpecies.text = selectedSpecies

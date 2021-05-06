@@ -23,8 +23,8 @@ class charactersViewController: UIViewController, UITableViewDataSource, UITable
     var createdArray: [String] = []
     var locationArray: [String] = []
     var originArray: [String] = []
-    var convertedImage: UIImage?
-
+    var characterNumber: Int = 21
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +34,53 @@ class charactersViewController: UIViewController, UITableViewDataSource, UITable
         
         //TODO: Implement pagination
         //TODO: Implement loop or method to load parts of data at a time
-
-        //Load Data
-        apiService.getData(Url: "https://rickandmortyapi.com/api/character/1") { (dataFromAPI: CharacterModel) in
+        let count = 1...20
+        
+        for number in count{
+            loadData(number: number)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return namesArray.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = charactersTableView.dequeueReusableCell (withIdentifier: "Cell", for: indexPath)
+        //Get images to the list
+        let image = cell.viewWithTag(1) as! UIImageView
+        let imageUrl = URL(string: imagesArray[indexPath.row])
+        if imageUrl == nil {
+            print("Error image path is Nil")
+        }else{
+            let imageData = try! Data(contentsOf: imageUrl!)
+            image.image = UIImage(data: imageData)
+        }
+        //names
+        //TODO: Implement Guard
+        
+        let name = cell.viewWithTag(2) as? UILabel
+        name?.text = namesArray[indexPath.row]
+        
+        //inflate cell
+        return cell
+        
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let height = scrollView.frame.size.height
+        let contentYoffset = scrollView.contentOffset.y
+        let distanceFromBottom = scrollView.contentSize.height - contentYoffset
+        if distanceFromBottom < height {
+            loadData(number: characterNumber)
+            characterNumber += 1
+        }
+        
+    }
+    
+    func loadData(number: Int){
+        apiService.getData(Url: "https://rickandmortyapi.com/api/character/\(number)") { (dataFromAPI: CharacterModel) in
             self.characters = [dataFromAPI]
             self.imagesArray.append(dataFromAPI.image)
             self.namesArray.append(dataFromAPI.name)
@@ -49,42 +93,7 @@ class charactersViewController: UIViewController, UITableViewDataSource, UITable
             self.locationArray.append(dataFromAPI.location.name)
             self.charactersTableView.reloadData()
         }
-        
-        print ("Here should be an image address")
-        for element in self.imagesArray {
-            print(element)
-        }
-        print ("Here should be a name")
-        for element in self.namesArray {
-            print(element)
-        }
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return namesArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = charactersTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        //Get images to the list
-        let image = cell.viewWithTag(1) as! UIImageView
-        let imageUrl = URL(string: imagesArray[indexPath.row])
-        if imageUrl == nil {
-            print("Error image path is Nil")
-        }else{
-            let imageData = try! Data(contentsOf: imageUrl!)
-            image.image = UIImage(data: imageData)
-            convertedImage = UIImage(data: imageData)!
-        }
-        //names
-        //TODO: Implement Guard
-        
-        let name = cell.viewWithTag(2) as? UILabel
-        name?.text = namesArray[indexPath.row]
-        //inflate cell
-        return cell
-    }
-    
     //pass data
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedCellIndex = indexPath.row
@@ -94,8 +103,8 @@ class charactersViewController: UIViewController, UITableViewDataSource, UITable
     //create an object with the ID selected
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueShowSelectedCharacter",
-        let viewController = segue.destination as? characterDetailVC  {
-            viewController.selectedImage = convertedImage
+           let viewController = segue.destination as? characterDetailVC  {
+            viewController.selectedImage = imagesArray[selectedCellIndex]
             viewController.selectedName = namesArray[selectedCellIndex]
             viewController.selecteStatus = statusArray[selectedCellIndex]
             viewController.selectedSpecies = speciesArray[selectedCellIndex]
