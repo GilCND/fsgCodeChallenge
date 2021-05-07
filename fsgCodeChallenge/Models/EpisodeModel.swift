@@ -34,7 +34,7 @@ struct EpisodeModel: Decodable, Identifiable {
     public let url: String
     public let created: String
     
-    private enum CodingKeys:	 String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case id, name, episode, characters, url, created
         case airDate = "air_date"
     }
