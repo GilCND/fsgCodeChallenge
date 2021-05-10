@@ -47,24 +47,41 @@ class charactersViewController: UIViewController, UITableViewDataSource, UITable
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = charactersTableView.dequeueReusableCell (withIdentifier: "Cell", for: indexPath)
-        //Get images to the list
-        let image = cell.viewWithTag(1) as! UIImageView
+        	
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as?
+                CustomTableViewCharacters else {
+            return UITableViewCell()
+        }
         let imageUrl = URL(string: imagesArray[indexPath.row])
         if imageUrl == nil {
             print("Error image path is Nil")
         }else{
             let imageData = try! Data(contentsOf: imageUrl!)
-            image.image = UIImage(data: imageData)
+            cell.characterImage.image = UIImage(data: imageData)
         }
-        //names
-        //TODO: Implement Guard
         
-        let name = cell.viewWithTag(2) as? UILabel
-        name?.text = namesArray[indexPath.row]
+        cell.label.text = namesArray[indexPath.row]
         
-        //inflate cell
         return cell
+        
+//        let cell = charactersTableView.dequeueReusableCell (withIdentifier: "Cell", for: indexPath)
+//        //Get images to the list
+//        let image = cell.viewWithTag(1) as! UIImageView
+//        let imageUrl = URL(string: imagesArray[indexPath.row])
+//        if imageUrl == nil {
+//            print("Error image path is Nil")
+//        }else{
+//            let imageData = try! Data(contentsOf: imageUrl!)
+//            image.image = UIImage(data: imageData)
+//        }
+//        //names
+//        //TODO: Implement Guard
+//
+//        let name = cell.viewWithTag(2) as? UILabel
+//        name?.text = namesArray[indexPath.row]
+//
+//        //inflate cell
+//        return cell
         
     }
     
