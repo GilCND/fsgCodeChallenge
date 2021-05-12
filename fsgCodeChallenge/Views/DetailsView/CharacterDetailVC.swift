@@ -7,7 +7,7 @@
 
 import UIKit
 
-class characterDetailVC: UIViewController {
+class CharacterDetailVC: UIViewController {
 
     //Images
     @IBOutlet weak var imgCharacter: UIImageView!

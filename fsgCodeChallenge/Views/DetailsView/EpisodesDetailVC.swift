@@ -25,8 +25,8 @@ class EpisodesDetailVC: UIViewController{
         super.viewDidLoad()
         
         // Connect data:
-               self.pickerCharacters.delegate = self
-               self.pickerCharacters.dataSource = self
+//               self.pickerCharacters.delegate = self
+//               self.pickerCharacters.dataSource = self
         
         
         lblName.text = selectedName
@@ -38,21 +38,21 @@ class EpisodesDetailVC: UIViewController{
 
 
 }
-extension EpisodesDetailVC: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 10
-        
-        //return selectedCharacters.count
-    }
-    	    
-}
-extension EpisodesDetailVC: UIPickerViewDelegate {
-    
-    func pickerView	(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "test"
-    }
-}
+//extension EpisodesDetailVC: UIPickerViewDataSource {
+//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+//        return 1
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//        return 10
+//
+//        //return selectedCharacters.count
+//    }
+//
+//}
+//extension EpisodesDetailVC: UIPickerViewDelegate {
+//
+//    func pickerView	(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        return "test"
+//    }
+//}

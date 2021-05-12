@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eyW-Lc-JQB">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="i9S-oz-fKf">
+            <objects>
+                <tabBarController id="eyW-Lc-JQB" customClass="ViewController" customModule="fsgCodeChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PPU-8E-Kr9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="1xH-jo-GLn" kind="relationship" relationship="viewControllers" id="KJe-eQ-DdO"/>
+                        <segue destination="1lL-r4-q4p" kind="relationship" relationship="viewControllers" id="SYn-Xi-kef"/>
+                        <segue destination="Wzx-E3-cKN" kind="relationship" relationship="viewControllers" id="SZJ-s7-qcm"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K2o-Mi-8O8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2494" y="35"/>
+        </scene>
+        <!--EpisodesStoryboard-->
+        <scene sceneID="MCb-Ws-Oa7">
+            <objects>
+                <viewControllerPlaceholder storyboardName="EpisodesStoryboard" id="1lL-r4-q4p" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Episodes" image="play.circle.fill" catalog="system" id="zGo-ho-ikU" userLabel="Episodes"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cqc-0f-RVp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1816" y="-250"/>
+        </scene>
+        <!--CharacterStoryboard-->
+        <scene sceneID="sdC-w8-yvQ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CharacterStoryboard" id="1xH-jo-GLn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Characters" image="person.fill" catalog="system" id="b9k-ts-Deg" userLabel="Characters"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yrx-iV-zdm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1810" y="35"/>
+        </scene>
+        <!--LocationStoryboard-->
+        <scene sceneID="uod-JF-hcL">
+            <objects>
+                <viewControllerPlaceholder storyboardName="LocationStoryboard" id="Wzx-E3-cKN" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Location" image="globe" catalog="system" id="6OT-6w-aSK" userLabel="Location"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lk6-FZ-xVU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1819" y="320"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="globe" catalog="system" width="128" height="121"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="play.circle.fill" catalog="system" width="128" height="121"/>
+    </resources>
+</document>

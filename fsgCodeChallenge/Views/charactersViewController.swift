@@ -31,9 +31,7 @@ class charactersViewController: UIViewController, UITableViewDataSource, UITable
         self.charactersTableView.rowHeight = 64
         self.charactersTableView.dataSource = self
         self.charactersTableView.delegate = self
-        
-        //TODO: Implement pagination
-        //TODO: Implement loop or method to load parts of data at a time
+
         let count = 1...20
         
         for number in count{
@@ -44,7 +42,6 @@ class charactersViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return namesArray.count
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         	
@@ -63,26 +60,6 @@ class charactersViewController: UIViewController, UITableViewDataSource, UITable
         cell.label.text = namesArray[indexPath.row]
         
         return cell
-        
-//        let cell = charactersTableView.dequeueReusableCell (withIdentifier: "Cell", for: indexPath)
-//        //Get images to the list
-//        let image = cell.viewWithTag(1) as! UIImageView
-//        let imageUrl = URL(string: imagesArray[indexPath.row])
-//        if imageUrl == nil {
-//            print("Error image path is Nil")
-//        }else{
-//            let imageData = try! Data(contentsOf: imageUrl!)
-//            image.image = UIImage(data: imageData)
-//        }
-//        //names
-//        //TODO: Implement Guard
-//
-//        let name = cell.viewWithTag(2) as? UILabel
-//        name?.text = namesArray[indexPath.row]
-//
-//        //inflate cell
-//        return cell
-        
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -93,7 +70,6 @@ class charactersViewController: UIViewController, UITableViewDataSource, UITable
             loadData(number: characterNumber)
             characterNumber += 1
         }
-        
     }
     
     func loadData(number: Int){
@@ -111,16 +87,16 @@ class charactersViewController: UIViewController, UITableViewDataSource, UITable
             self.charactersTableView.reloadData()
         }
     }
-    //pass data
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedCellIndex = indexPath.row
-        self.performSegue(withIdentifier: "segueShowSelectedCharacter", sender: nil)
+       self.performSegue(withIdentifier: "segueShowSelectedCharacter", sender: nil)
+        
     }
     
-    //create an object with the ID selected
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueShowSelectedCharacter",
-           let viewController = segue.destination as? characterDetailVC  {
+            let viewController = segue.destination as? CharacterDetailVC  {
             viewController.selectedImage = imagesArray[selectedCellIndex]
             viewController.selectedName = namesArray[selectedCellIndex]
             viewController.selecteStatus = statusArray[selectedCellIndex]

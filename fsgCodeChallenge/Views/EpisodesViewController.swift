@@ -6,8 +6,6 @@
 //
 import UIKit
 
-
-
 class EpisodesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
 
@@ -32,8 +30,6 @@ class EpisodesViewController: UIViewController, UITableViewDataSource, UITableVi
             self.episodesTableView.dataSource = self
             self.episodesTableView.delegate = self
 
-            //TODO: Implement pagination
-            //TODO: Implement loop or method to load parts of data at a time
             let count = 1...20
 
             for number in count{
@@ -48,15 +44,11 @@ class EpisodesViewController: UIViewController, UITableViewDataSource, UITableVi
 
     @objc(tableView:cellForRowAtIndexPath:) func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = episodesTableView.dequeueReusableCell (withIdentifier: "Cell", for: indexPath)
-            //Episodes
-            //TODO: Implement Guard
 
             let name = cell.viewWithTag(2) as? UILabel
             name?.text = namesArray[indexPath.row]
 
-            //inflate cell
             return cell
-
         }
 
         func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -67,7 +59,6 @@ class EpisodesViewController: UIViewController, UITableViewDataSource, UITableVi
                 loadData(number: episodesNumber)
                 episodesNumber += 1
             }
-
         }
 
         func loadData(number: Int){
@@ -82,13 +73,12 @@ class EpisodesViewController: UIViewController, UITableViewDataSource, UITableVi
 
             }
         }
-        //pass data
+
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             selectedCellIndex = indexPath.row
             self.performSegue(withIdentifier: "segueShowSelectedEpisode", sender: nil)
         }
 
-        //create an object with the ID selected
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if segue.identifier == "segueShowSelectedEpisode",
                let viewController = segue.destination as? EpisodesDetailVC {
