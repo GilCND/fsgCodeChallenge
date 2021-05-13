@@ -14,6 +14,7 @@ class charactersViewController: UIViewController, UITableViewDataSource, UITable
     var apiService = ApiService()
     var characters: [CharacterModel] = []
     var selectedCellIndex: Int = 0
+    
     var imagesArray: [String] = []
     var namesArray: [String] = []
     var statusArray: [String] = []
@@ -46,7 +47,7 @@ class charactersViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         	
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as?
-                CustomTableViewCharacters else {
+                CharactersCellTableView else {
             return UITableViewCell()
         }
         let imageUrl = URL(string: imagesArray[indexPath.row])
@@ -57,7 +58,7 @@ class charactersViewController: UIViewController, UITableViewDataSource, UITable
             cell.characterImage.image = UIImage(data: imageData)
         }
         
-        cell.label.text = namesArray[indexPath.row]
+        cell.lblCharacterName.text = namesArray[indexPath.row]
         
         return cell
     }
@@ -87,26 +88,28 @@ class charactersViewController: UIViewController, UITableViewDataSource, UITable
             self.charactersTableView.reloadData()
         }
     }
-    
+ 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedCellIndex = indexPath.row
-       self.performSegue(withIdentifier: "segueShowSelectedCharacter", sender: nil)
-        
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueShowSelectedCharacter",
-            let viewController = segue.destination as? CharacterDetailVC  {
-            viewController.selectedImage = imagesArray[selectedCellIndex]
-            viewController.selectedName = namesArray[selectedCellIndex]
-            viewController.selecteStatus = statusArray[selectedCellIndex]
-            viewController.selectedSpecies = speciesArray[selectedCellIndex]
-            viewController.selectedType = typeArray[selectedCellIndex]
-            viewController.selectedGender = genderArray[selectedCellIndex]
-            viewController.selectedCreated = createdArray[selectedCellIndex]
-            viewController.selectedLocation = locationArray[selectedCellIndex]
-            viewController.selectedOrigin = originArray[selectedCellIndex]
+        let CharacterDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "CharacterDetailVC") as? CharacterDetailVC
+        guard let imageUrl = URL(string: imagesArray[selectedCellIndex]) else {return}
+        DispatchQueue.global().async {
+            let data = try? Data(contentsOf: imageUrl)
+            DispatchQueue.main.async {
+                CharacterDetailsViewController?.imgCharacter.image = UIImage(data: data!)
+                CharacterDetailsViewController?.lblCreated.text = self.createdArray[self.selectedCellIndex]
+                CharacterDetailsViewController?.lblName.text = self.namesArray[self.selectedCellIndex]
+                CharacterDetailsViewController?.lblStatus.text = self.statusArray[self.selectedCellIndex]
+                CharacterDetailsViewController?.lblSpecies.text = self.speciesArray[self.selectedCellIndex]
+                CharacterDetailsViewController?.lblType.text = self.typeArray[self.selectedCellIndex]
+                CharacterDetailsViewController?.lblGender.text = self.genderArray[self.selectedCellIndex]
+                CharacterDetailsViewController?.lblCreated.text = self.createdArray[self.selectedCellIndex]
+                CharacterDetailsViewController?.lblLocation.text = self.locationArray[self.selectedCellIndex]
+                CharacterDetailsViewController?.lblOrigin.text = self.originArray[self.selectedCellIndex]
+            }
         }
+        
+        self.navigationController?.pushViewController(CharacterDetailsViewController!, animated: true)
     }
 }
 

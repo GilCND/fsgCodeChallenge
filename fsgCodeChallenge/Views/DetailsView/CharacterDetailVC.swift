@@ -21,34 +21,19 @@ class CharacterDetailVC: UIViewController {
     @IBOutlet weak var lblLocation: UILabel!
     @IBOutlet weak var lblCreated: UILabel!
     //Variables
-    var selectedImage: String!
-    var selectedName: String!
-    var selecteStatus: String!
-    var selectedSpecies: String!
-    var selectedType: String!
-    var selectedGender: String!
-    var selectedCreated: String!
-    var selectedLocation: String!
-    var selectedOrigin: String!
+    var selectedImage: String?
+    var selectedName: String?
+    var selectedStatus: String?
+    var selectedSpecies: String?
+    var selectedType: String?
+    var selectedGender: String?
+    var selectedCreated: String?
+    var selectedLocation: String?
+    var selectedOrigin: String?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let imageUrl = URL(string: selectedImage)
-        if imageUrl == nil {
-            print("Error image path is Nil")
-        }else{
-            let imageData = try! Data(contentsOf: imageUrl!)
-            imgCharacter.image = UIImage(data: imageData)
-        }
-        lblName.text = selectedName
-        lblStatus.text = selecteStatus
-        lblSpecies.text = selectedSpecies
-        lblType.text = selectedType
-        lblGender.text = selectedGender
-        lblOrigin.text = selectedOrigin
-        lblLocation.text = selectedLocation
-        lblCreated.text = selectedCreated
     }
 }
+

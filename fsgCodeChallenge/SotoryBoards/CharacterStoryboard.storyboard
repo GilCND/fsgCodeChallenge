@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="71" id="yrK-6P-U1z" customClass="CustomTableViewCharacters" customModule="fsgCodeChallenge" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="71" id="yrK-6P-U1z" customClass="CharactersCellTableView" customModule="fsgCodeChallenge" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.5" width="414" height="71"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yrK-6P-U1z" id="txd-o5-thP">
@@ -57,7 +57,7 @@
                                         <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
                                         <connections>
                                             <outlet property="characterImage" destination="rcA-4H-hSZ" id="1mI-Ez-73i"/>
-                                            <outlet property="label" destination="Zp6-S1-LQL" id="tdA-1k-tXe"/>
+                                            <outlet property="lblCharacterName" destination="Zp6-S1-LQL" id="tdA-1k-tXe"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -85,7 +85,7 @@
         <!--Character DetailVC-->
         <scene sceneID="GEa-CQ-bUg">
             <objects>
-                <viewController id="iqk-3o-Y9I" customClass="CharacterDetailVC" customModule="fsgCodeChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CharacterDetailVC" id="iqk-3o-Y9I" customClass="CharacterDetailVC" customModule="fsgCodeChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aPY-qz-kbT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -200,7 +200,7 @@
         <!--Characters-->
         <scene sceneID="wRl-yk-zLk">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zr3-d9-39U" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="navigationController" automaticallyAdjustsScrollViewInsets="NO" id="zr3-d9-39U" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Characters" image="person.fill" catalog="system" id="rsp-B5-5kS"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="eZ1-tV-pc7"/>

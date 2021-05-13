@@ -7,9 +7,9 @@
 
 import UIKit
 	
-class CustomTableViewCharacters: UITableViewCell {
+class CharactersCellTableView: UITableViewCell {
 
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var lblCharacterName: UILabel!
     @IBOutlet weak var characterImage: UIImageView!
     var imageAddress: String = ""
         var model: CharacterModel? {
