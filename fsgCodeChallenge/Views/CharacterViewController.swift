@@ -1,5 +1,5 @@
 ////
-////  charactersViewController.swift
+////  CharacterViewController.swift
 ////  fsgCodeChallenge
 ////
 ////  Created by Felipe Gil on 2021-04-30.
@@ -7,7 +7,7 @@
 ////
 import UIKit
 
-class charactersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class CharacterViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var charactersTableView: UITableView!
     
