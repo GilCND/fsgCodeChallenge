@@ -7,39 +7,40 @@
 import UIKit
 
 class EpisodesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
-
+    
     @IBOutlet weak var episodesTableView: UITableView!
-
-        var apiService = ApiService()
-        var episodes: [EpisodeModel] = []
-        var selectedCellIndex: Int = 0
+    
+    var apiService = ApiService()
+    var episodes: [EpisodeModel] = []
+    var selectedCellIndex: Int = 0
+    
+    var namesArray: [String] = []
+    var airDateArray: [String] = []
+    var episodeArray: [String] = []
+    var charactersArray: [[String]] = []
+    var charactersIndex: [Int] = []
+    var createdArray: [String] = []
+    var episodesNumber = 21
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.episodesTableView.rowHeight = 64
+        self.episodesTableView.dataSource = self
+        self.episodesTableView.delegate = self
         
-        var namesArray: [String] = []
-        var airDateArray: [String] = []
-        var episodeArray: [String] = []
-        var charactersArray: [[String]] = []
-        var createdArray: [String] = []
-        var episodesNumber = 21
-
-
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            self.episodesTableView.rowHeight = 64
-            self.episodesTableView.dataSource = self
-            self.episodesTableView.delegate = self
-
-            let count = 1...20
-
-            for number in count{
-                loadData(number: number)
-            }
+        let count = 1...20
+        
+        for number in count{
+            loadData(number: number)
         }
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return namesArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "EpisodeCell", for: indexPath) as?
                 EpisodesCellTableView else {
             return UITableViewCell()
@@ -66,11 +67,11 @@ class EpisodesViewController: UIViewController, UITableViewDataSource, UITableVi
             self.airDateArray.append(dataFromAPI.airDate)
             self.episodeArray.append(dataFromAPI.episode)
             self.createdArray.append(dataFromAPI.created)
-            self.charactersArray.append(dataFromAPI.characters)
+            self.charactersIndex.append(dataFromAPI.id)
             self.episodesTableView.reloadData()
         }
     }
- 
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedCellIndex = indexPath.row
         let EpisodeDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "EpisodesDetailVC") as? EpisodesDetailVC
@@ -81,7 +82,7 @@ class EpisodesViewController: UIViewController, UITableViewDataSource, UITableVi
             EpisodeDetailsViewController?.lblName.text = self.namesArray[self.selectedCellIndex]
             EpisodeDetailsViewController?.lblAirDate.text = self.airDateArray[self.selectedCellIndex]
             EpisodeDetailsViewController?.lblEpisode.text = self.episodeArray[self.selectedCellIndex]
-            EpisodeDetailsViewController?.selectedCharacters = self.charactersArray[self.selectedCellIndex]
+            EpisodeDetailsViewController?.selectedIndex = self.selectedCellIndex
             EpisodeDetailsViewController?.lblCreated.text = self.createdArray[self.selectedCellIndex]
         }
         

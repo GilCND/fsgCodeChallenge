@@ -8,22 +8,22 @@
 import UIKit
 
 class EpisodesCellTableView: UITableViewCell {
-
+    
     @IBOutlet weak var lblEpisodeName: UILabel!
     
-            var model: EpisodeModel? {
-                didSet{
-                    //label.text = model?.name
-                }
-            }
-
-        
-        override func awakeFromNib() {
-            super.awakeFromNib()
-            //initialization code here
+    var model: EpisodeModel? {
+        didSet{
+            //label.text = model?.name
         }
-        override func setSelected(_ selected:Bool, animated:Bool) {
-            super.setSelected(selected, animated: animated)
-        }
-
     }
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        //initialization code here
+    }
+    override func setSelected(_ selected:Bool, animated:Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
+}

@@ -8,7 +8,7 @@
 import UIKit
 
 class CharacterDetailVC: UIViewController {
-
+    
     //Images
     @IBOutlet weak var imgCharacter: UIImageView!
     //Labels

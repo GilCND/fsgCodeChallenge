@@ -6,18 +6,18 @@
 //
 
 import UIKit
-	
-class CharactersCellTableView: UITableViewCell {
 
+class CharactersCellTableView: UITableViewCell {
+    
     @IBOutlet weak var lblCharacterName: UILabel!
     @IBOutlet weak var characterImage: UIImageView!
     var imageAddress: String = ""
-        var model: CharacterModel? {
-            didSet{
-                //label.text = model?.name
-            }
+    var model: CharacterModel? {
+        didSet{
+            //label.text = model?.name
         }
-
+    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,5 +26,5 @@ class CharactersCellTableView: UITableViewCell {
     override func setSelected(_ selected:Bool, animated:Bool) {
         super.setSelected(selected, animated: animated)
     }
-
+    
 }
