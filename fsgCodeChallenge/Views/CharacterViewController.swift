@@ -32,7 +32,7 @@ class CharacterViewController: UIViewController, UITableViewDataSource, UITableV
         self.charactersTableView.rowHeight = 64
         self.charactersTableView.dataSource = self
         self.charactersTableView.delegate = self
-
+        
         let count = 1...20
         
         for number in count{
@@ -45,7 +45,7 @@ class CharacterViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        	
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as?
                 CharactersCellTableView else {
             return UITableViewCell()
@@ -74,7 +74,8 @@ class CharacterViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func loadData(number: Int){
-        apiService.getData(Url: "https://rickandmortyapi.com/api/character/\(number)") { (dataFromAPI: CharacterModel) in
+        apiService.getData(Url: "https://rickandmortyapi.com/api/character/\(number)") { [weak self](dataFromAPI: CharacterModel) in
+            guard let self = self else { return }
             self.characters = [dataFromAPI]
             self.imagesArray.append(dataFromAPI.image)
             self.namesArray.append(dataFromAPI.name)
@@ -88,28 +89,27 @@ class CharacterViewController: UIViewController, UITableViewDataSource, UITableV
             self.charactersTableView.reloadData()
         }
     }
- 
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedCellIndex = indexPath.row
         let CharacterDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "CharacterDetailVC") as? CharacterDetailVC
         guard let imageUrl = URL(string: imagesArray[selectedCellIndex]) else {return}
-        DispatchQueue.global().async {
-            let data = try? Data(contentsOf: imageUrl)
-            DispatchQueue.main.async {
-                CharacterDetailsViewController?.imgCharacter.image = UIImage(data: data!)
-                CharacterDetailsViewController?.lblCreated.text = self.createdArray[self.selectedCellIndex]
-                CharacterDetailsViewController?.lblName.text = self.namesArray[self.selectedCellIndex]
-                CharacterDetailsViewController?.lblStatus.text = self.statusArray[self.selectedCellIndex]
-                CharacterDetailsViewController?.lblSpecies.text = self.speciesArray[self.selectedCellIndex]
-                CharacterDetailsViewController?.lblType.text = self.typeArray[self.selectedCellIndex]
-                CharacterDetailsViewController?.lblGender.text = self.genderArray[self.selectedCellIndex]
-                CharacterDetailsViewController?.lblCreated.text = self.createdArray[self.selectedCellIndex]
-                CharacterDetailsViewController?.lblLocation.text = self.locationArray[self.selectedCellIndex]
-                CharacterDetailsViewController?.lblOrigin.text = self.originArray[self.selectedCellIndex]
-            }
+        let data = try? Data(contentsOf: imageUrl)
+        
+        //TODO: remove DispatchQueue and replace with something correct
+        DispatchQueue.main.async {
+            CharacterDetailsViewController?.imgCharacter.image = UIImage(data: data!)
+            CharacterDetailsViewController?.lblCreated.text = self.createdArray[self.selectedCellIndex]
+            CharacterDetailsViewController?.lblName.text = self.namesArray[self.selectedCellIndex]
+            CharacterDetailsViewController?.lblStatus.text = self.statusArray[self.selectedCellIndex]
+            CharacterDetailsViewController?.lblSpecies.text = self.speciesArray[self.selectedCellIndex]
+            CharacterDetailsViewController?.lblType.text = self.typeArray[self.selectedCellIndex]
+            CharacterDetailsViewController?.lblGender.text = self.genderArray[self.selectedCellIndex]
+            CharacterDetailsViewController?.lblCreated.text = self.createdArray[self.selectedCellIndex]
+            CharacterDetailsViewController?.lblLocation.text = self.locationArray[self.selectedCellIndex]
+            CharacterDetailsViewController?.lblOrigin.text = self.originArray[self.selectedCellIndex]
         }
         
         self.navigationController?.pushViewController(CharacterDetailsViewController!, animated: true)
     }
 }
-
