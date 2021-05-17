@@ -6,38 +6,37 @@
 //
 import UIKit
 
-class EpisodesDetailVC: UIViewController{
+class EpisodesDetailVC: UIViewController {
     
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblAirDate: UILabel!
     @IBOutlet weak var lblEpisode: UILabel!
     @IBOutlet weak var pickerCharacters: UIPickerView!
     @IBOutlet weak var lblCreated: UILabel!
-    var selectedIndex: Int!
+    var selectedIndex: Int = 0 {
+        didSet {
+            self.loadData(number: self.selectedIndex)
+        }
+    }
     var selectedCharacters: [String] = []
     var apiService = ApiService()
     var episodes: [EpisodeModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //QUESTION: Why I had to use DispatchQueue twice? I figure out how to solve the problem
-        // but I dont know whats going on in here
-        DispatchQueue.main.async {
-            self.loadData(number: self.selectedIndex+1)
-            DispatchQueue.main.async {
-                self.pickerCharacters.dataSource = self
-                self.pickerCharacters.delegate = self
-            }
-        }
+        self.pickerCharacters.dataSource = self
+        self.pickerCharacters.delegate = self
     }
     
-    func loadData(number: Int){
-        apiService.getData(Url: "https://rickandmortyapi.com/api/episode/\(number)") { (dataFromAPI: EpisodeModel) in
+    func loadData(number: Int) {
+        apiService.getData(Url: "https://rickandmortyapi.com/api/episode/\(number)") { [weak self] (dataFromAPI: EpisodeModel) in
+            guard let self = self else { return }
             self.selectedCharacters.append(contentsOf: dataFromAPI.characters)
+            self.pickerCharacters.reloadAllComponents()
         }
     }
 }
-extension EpisodesDetailVC: UIPickerViewDataSource{
+extension EpisodesDetailVC: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -46,7 +45,7 @@ extension EpisodesDetailVC: UIPickerViewDataSource{
         return selectedCharacters.count
     }
 }
-extension EpisodesDetailVC: UIPickerViewDelegate{
+extension EpisodesDetailVC: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return selectedCharacters[row]
     }

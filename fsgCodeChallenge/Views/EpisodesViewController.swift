@@ -61,7 +61,8 @@ class EpisodesViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func loadData(number: Int){
-        apiService.getData(Url: "https://rickandmortyapi.com/api/episode/\(number)") { (dataFromAPI: EpisodeModel) in
+        apiService.getData(Url: "https://rickandmortyapi.com/api/episode/\(number)") { [weak self] (dataFromAPI: EpisodeModel) in
+            guard let self = self else { return }
             self.episodes = [dataFromAPI]
             self.namesArray.append(dataFromAPI.name)
             self.airDateArray.append(dataFromAPI.airDate)
@@ -75,8 +76,7 @@ class EpisodesViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedCellIndex = indexPath.row
         let EpisodeDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "EpisodesDetailVC") as? EpisodesDetailVC
-        
-        
+        //TODO: remove DispatchQueue and replace with something correct
         DispatchQueue.main.async {
             EpisodeDetailsViewController?.lblCreated.text = self.createdArray[self.selectedCellIndex]
             EpisodeDetailsViewController?.lblName.text = self.namesArray[self.selectedCellIndex]
