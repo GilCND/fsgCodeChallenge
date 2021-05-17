@@ -25,6 +25,8 @@
 		60D0666F263C3CD900C9DC47 /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D0666E263C3CD900C9DC47 /* CharacterViewController.swift */; };
 		60D06671263C3CF700C9DC47 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D06670263C3CF700C9DC47 /* LocationViewController.swift */; };
 		60D1339D264578D700170FEE /* EpisodesDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D1339C264578D700170FEE /* EpisodesDetailVC.swift */; };
+		60E329402652D7F90032AD0A /* LocationCellTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E3293F2652D7F90032AD0A /* LocationCellTableView.swift */; };
+		60E329422652D9E40032AD0A /* LocationDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E329412652D9E40032AD0A /* LocationDetailVC.swift */; };
 		60E3E9D92649574400823832 /* CharactersCellTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E3E9D82649574100823832 /* CharactersCellTableView.swift */; };
 		60E3E9DD264983C800823832 /* CharacterStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60E3E9DC264983C800823832 /* CharacterStoryboard.storyboard */; };
 		60E3E9E02649888A00823832 /* EpisodesStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60E3E9DF2649888A00823832 /* EpisodesStoryboard.storyboard */; };
@@ -74,6 +76,8 @@
 		60D0666E263C3CD900C9DC47 /* CharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController.swift; sourceTree = "<group>"; };
 		60D06670263C3CF700C9DC47 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		60D1339C264578D700170FEE /* EpisodesDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesDetailVC.swift; sourceTree = "<group>"; };
+		60E3293F2652D7F90032AD0A /* LocationCellTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCellTableView.swift; sourceTree = "<group>"; };
+		60E329412652D9E40032AD0A /* LocationDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailVC.swift; sourceTree = "<group>"; };
 		60E3E9D82649574100823832 /* CharactersCellTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersCellTableView.swift; sourceTree = "<group>"; };
 		60E3E9DC264983C800823832 /* CharacterStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CharacterStoryboard.storyboard; sourceTree = "<group>"; };
 		60E3E9DF2649888A00823832 /* EpisodesStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EpisodesStoryboard.storyboard; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 			children = (
 				60E3E9D82649574100823832 /* CharactersCellTableView.swift */,
 				604783C9264DA02200E35708 /* EpisodesCellTableView.swift */,
+				60E3293F2652D7F90032AD0A /* LocationCellTableView.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -205,6 +210,7 @@
 			children = (
 				601E9BA6263C589400FD4393 /* CharacterDetailVC.swift */,
 				60D1339C264578D700170FEE /* EpisodesDetailVC.swift */,
+				60E329412652D9E40032AD0A /* LocationDetailVC.swift */,
 			);
 			path = DetailsView;
 			sourceTree = "<group>";
@@ -357,7 +363,9 @@
 				60D06660263B38A100C9DC47 /* ApiService.swift in Sources */,
 				60D0666D263C3CB300C9DC47 /* EpisodesViewController.swift in Sources */,
 				60D0662A263B19C100C9DC47 /* AppDelegate.swift in Sources */,
+				60E329402652D7F90032AD0A /* LocationCellTableView.swift in Sources */,
 				60E3E9D92649574400823832 /* CharactersCellTableView.swift in Sources */,
+				60E329422652D9E40032AD0A /* LocationDetailVC.swift in Sources */,
 				601E9BA7263C589400FD4393 /* CharacterDetailVC.swift in Sources */,
 				60D1339D264578D700170FEE /* EpisodesDetailVC.swift in Sources */,
 				60D06662263B507600C9DC47 /* CharacterModel.swift in Sources */,
