@@ -9,7 +9,10 @@ import UIKit
 
 class CharacterDetailVC: UIViewController {
     
-
+    // Ideally viewModel should get "bound" to ui elements so that
+    // when model gets updated the corresponding ui element automatically update.
+    var viewModel: CharacterDetailViewModel?
+    
     @IBOutlet weak var imgCharacter: UIImageView!
 
     @IBOutlet weak var lblName: UILabel!
@@ -23,6 +26,10 @@ class CharacterDetailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        #warning("add the rest of dumb bindings")
+        lblName.text =  viewModel?.name
+
     }
 }
 

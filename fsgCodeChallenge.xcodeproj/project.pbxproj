@@ -31,6 +31,7 @@
 		60E3E9DD264983C800823832 /* CharacterStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60E3E9DC264983C800823832 /* CharacterStoryboard.storyboard */; };
 		60E3E9E02649888A00823832 /* EpisodesStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60E3E9DF2649888A00823832 /* EpisodesStoryboard.storyboard */; };
 		60E3E9E22649895E00823832 /* LocationStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60E3E9E12649895E00823832 /* LocationStoryboard.storyboard */; };
+		7891F51126555D3E009EAD01 /* CharacterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7891F51026555D3E009EAD01 /* CharacterDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		60E3E9DC264983C800823832 /* CharacterStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CharacterStoryboard.storyboard; sourceTree = "<group>"; };
 		60E3E9DF2649888A00823832 /* EpisodesStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EpisodesStoryboard.storyboard; sourceTree = "<group>"; };
 		60E3E9E12649895E00823832 /* LocationStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationStoryboard.storyboard; sourceTree = "<group>"; };
+		7891F51026555D3E009EAD01 /* CharacterDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 		60D06673263C3D2F00C9DC47 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7891F50F26555D0F009EAD01 /* ViewModel */,
 				60E3E9DA2649574900823832 /* TableViewCell */,
 				60D0662D263B19C100C9DC47 /* ViewController.swift */,
 				60D0666C263C3CB300C9DC47 /* EpisodesViewController.swift */,
@@ -224,6 +227,14 @@
 				60E3E9E12649895E00823832 /* LocationStoryboard.storyboard */,
 			);
 			path = SotoryBoards;
+			sourceTree = "<group>";
+		};
+		7891F50F26555D0F009EAD01 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7891F51026555D3E009EAD01 /* CharacterDetailViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,6 +383,7 @@
 				60D0662C263B19C100C9DC47 /* SceneDelegate.swift in Sources */,
 				60D06664263B61F600C9DC47 /* LocationModel.swift in Sources */,
 				60D06671263C3CF700C9DC47 /* LocationViewController.swift in Sources */,
+				7891F51126555D3E009EAD01 /* CharacterDetailViewModel.swift in Sources */,
 				60D0666F263C3CD900C9DC47 /* CharacterViewController.swift in Sources */,
 				60D0665E263B379F00C9DC47 /* EpisodeModel.swift in Sources */,
 				604783CA264DA02200E35708 /* EpisodesCellTableView.swift in Sources */,

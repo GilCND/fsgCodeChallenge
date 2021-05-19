@@ -92,24 +92,27 @@ class CharacterViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedCellIndex = indexPath.row
-        let CharacterDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "CharacterDetailVC") as? CharacterDetailVC
-        guard let imageUrl = URL(string: imagesArray[selectedCellIndex]) else {return}
-        let data = try? Data(contentsOf: imageUrl)
+        let characterDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "CharacterDetailVC") as? CharacterDetailVC
+        
+        guard let imageUrl = URL(string: imagesArray[selectedCellIndex]),
+              let data = try? Data(contentsOf: imageUrl),
+              let image = UIImage(data: data)
+              else { return }
+        
         
         //TODO: remove DispatchQueue and replace with something correct
-        DispatchQueue.main.async {
-            CharacterDetailsViewController?.imgCharacter.image = UIImage(data: data!)
-            CharacterDetailsViewController?.lblCreated.text = self.createdArray[self.selectedCellIndex]
-            CharacterDetailsViewController?.lblName.text = self.namesArray[self.selectedCellIndex]
-            CharacterDetailsViewController?.lblStatus.text = self.statusArray[self.selectedCellIndex]
-            CharacterDetailsViewController?.lblSpecies.text = self.speciesArray[self.selectedCellIndex]
-            CharacterDetailsViewController?.lblType.text = self.typeArray[self.selectedCellIndex]
-            CharacterDetailsViewController?.lblGender.text = self.genderArray[self.selectedCellIndex]
-            CharacterDetailsViewController?.lblCreated.text = self.createdArray[self.selectedCellIndex]
-            CharacterDetailsViewController?.lblLocation.text = self.locationArray[self.selectedCellIndex]
-            CharacterDetailsViewController?.lblOrigin.text = self.originArray[self.selectedCellIndex]
-        }
+        #warning("TODO: remove DispatchQueue and replace with something correct")
+        let characterViewModel = CharacterDetailViewModel(imgCharacter: image,
+                                                          name: self.namesArray[self.selectedCellIndex],
+                                                          status: self.statusArray[self.selectedCellIndex],
+                                                          species: self.speciesArray[self.selectedCellIndex],
+                                                          type: self.typeArray[self.selectedCellIndex],
+                                                          gender: self.genderArray[self.selectedCellIndex],
+                                                          origin: self.originArray[self.selectedCellIndex],
+                                                          location: self.locationArray[self.selectedCellIndex],
+                                                          created: self.createdArray[self.selectedCellIndex])
+        characterDetailsViewController?.viewModel = characterViewModel
         
-        self.navigationController?.pushViewController(CharacterDetailsViewController!, animated: true)
+        self.navigationController?.pushViewController(characterDetailsViewController!, animated: true)
     }
 }
